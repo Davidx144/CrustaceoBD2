@@ -6,8 +6,15 @@ const cookieParser=require('cookie-parser');
 const db=require('./config/config').get(process.env.NODE_ENV);
 const User=require('./models/user');
 const {auth} =require('./middlewares/auth');
+// Ensallo
+const cors=require("cors");
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
 
-
+ 
 const app=express();
 // app use
 app.use(bodyparser.urlencoded({extended : false}));
@@ -106,3 +113,7 @@ app.get('/api/logout',auth,function(req,res){
     });
 
 }); 
+
+
+// ensallo
+app.use(cors(corsOptions)) // Use this after the variable declaration

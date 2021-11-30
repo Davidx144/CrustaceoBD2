@@ -10,6 +10,7 @@ const Movie = require('./models/movie');
 const { auth } = require('./middlewares/auth');
 // Ensallo
 const cors = require("cors");
+const movie = require('./models/movie');
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -117,13 +118,25 @@ app.get('/api/logout', auth, function (req, res) {
     });
 
 });
+/* var coll = db.collection('Notifies');
+app.get('/api/notes', auth, function (req, res) {
+    coll.find({}).toArray(function (err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+
+            res.send(JSON.stringify(result));
+        }
+    })
+
+}); */
 
 
 // ensallo
 app.use(cors(corsOptions)) // Use this after the variable declaration
 
 
-// adding new movie (sign-up route)
+// adding new movie 
 app.post('/api/registerMovie', function (req, res) {
     // taking a user
     const newmovie = new Movie(req.body)
@@ -143,20 +156,28 @@ app.post('/api/registerMovie', function (req, res) {
     });
 });
 
-//delete a Note with noteId
-app.delete('/api/delete', function (req, res){
 
-});
+/* app.get('/api/notes',function (req, res) {
+    Movie.find(res.json);
+}); */
+
+//delete a Note with noteId
+/* app.delete('/api/delete', function (req, res){
+
+}); */
+
+
+
 
 
 // find a note by id
-exports.findone=function(req,res){
+/* exports.findone=function(req,res){
     Note.findById(req.params.noteId,function(err,doc){
         if(err) return res.status(400).send(err);
         if(!doc) return res.status(404).json({message : "Note with given Id is not found"});
         res.status(200).json(doc);
     })
-};
+}; */
 
  // adding new user (sign-up route)
 /* app.post('/api/register',function(req,res){

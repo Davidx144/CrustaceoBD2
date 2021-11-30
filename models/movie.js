@@ -43,6 +43,35 @@ const movieSchema = mongoose.Schema({
     },
 });
 
+/* 
+// find by token
+movieSchema.statics.findById=function(token,cb){
+    var movie=this;
+
+    movie.find({}).toArray(function (err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+
+            res.send(JSON.stringify(result));
+        }
+    })
+};
+
+
+//delete token
+
+movieSchema.methods.deleteToken=function(token,cb){
+    var user=this;
+
+    user.update({$unset : {token :1}},function(err,user){
+        if(err) return cb(err);
+        cb(null,user);
+    })
+} */
+
+
+
 /* movieSchema.pre('save', function (next) {
     var movie = this;
 

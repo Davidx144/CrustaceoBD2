@@ -48,6 +48,10 @@ const userSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
+    bookings: {
+        type: Array,
+        required: true
+    },
     token: {
         type: String
     }

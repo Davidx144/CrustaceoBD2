@@ -8,7 +8,7 @@ const movieSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        maxlength: 200
+        maxlength: 500
     },
     gender: {
         type: String,
@@ -18,18 +18,17 @@ const movieSchema = mongoose.Schema({
     img: {
         type: String,
         required: true,
-        maxlength: 500
+        maxlength: 5000
     },
     synopsis: {
         type: String,
         required: true,
-        maxlength: 500
+        maxlength: 5000
     },
     format: {
         type: String,
         required: true,
         maxlength: 100
-
     },
     value: {
         type: String,
@@ -37,6 +36,11 @@ const movieSchema = mongoose.Schema({
         maxlength: 100
     },
     hour: {
+        type: String,
+        required: true,
+        maxlength: 100
+    },
+    duration: {
         type: String,
         required: true,
         maxlength: 100

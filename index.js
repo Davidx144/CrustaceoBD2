@@ -105,7 +105,7 @@ app.get('/api/profile', auth, function (req, res) {
         isAuth: true,
         id: req.user._id,
         email: req.user.email,
-        name: req.user.firstname + " "+req.user.lastname,
+        name: req.user.firstname + " " + req.user.lastname,
         type: req.user.userType
     })
 });
@@ -158,6 +158,70 @@ app.post('/api/registerMovie', function (req, res) {
 });
 
 
+app.get('/api/movies', function (req, res) {
+    Movie.find({}).then((movies)=>{
+        res.json(movies)
+    })
+});
+
+
+
+
+
+
+
+
+
+    /* let peliculas = new mongoose.Schema({
+        titulo: { type: String, required: true }
+    });
+
+    let peli = mongoose.model("movies", peliculas); */
+/*     peli.find({}, (error, data) => {
+        if (data) {
+            res.json(data)
+        } else {
+            res.json(error)
+        }
+    }) */
+
+
+
+/* app.get('/api/pelis', function (req, res) {
+
+    const peli = new Movie(req.body)
+    Movie.find({ title: ''}, function (err, movie) {
+        console.log(movie)
+
+    });
+}); */
+
+/* var coll = db.collection('movies');
+
+coll.find({}).toArray(function (err, result) {
+    if (err) {
+        res.send(err);
+    } else {
+
+        res.send(JSON.stringify(result));
+    }
+}) */
+
+/* app.get('/api/movies', function (res) {
+    res.json({
+        title: movie.title,
+        gender: movie.gender,
+        img: movie.img,
+        type: movie.synopsis
+    })
+});
+
+exports = async function (payload, response) {
+
+    // Querying a mongodb service:
+    return await context.services.get("mongodb-atlas").db("test").collection("movies").find({}).limit(50);
+
+}; */
 /* app.get('/api/notes',function (req, res) {
     Movie.find(res.json);
 }); */

@@ -164,6 +164,11 @@ app.get('/api/movies', function (req, res) {
     })
 });
 
+app.get('/api/info/:id', function (req, res) {
+    Movie.find({_id:(req.params.id)}).then((movies)=>{
+        res.json(movies)
+    })
+});
 
 
 

@@ -45,6 +45,11 @@ const movieSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
+    trailer: {
+        type: String,
+        required: true,
+        maxlength: 5000
+    },
 });
 
 /* 

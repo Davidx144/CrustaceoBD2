@@ -23,7 +23,7 @@ const movieSchema = mongoose.Schema({
     synopsis: {
         type: String,
         required: true,
-        maxlength: 5000
+        maxlength: 500
     },
     format: {
         type: String,
@@ -48,7 +48,7 @@ const movieSchema = mongoose.Schema({
     trailer: {
         type: String,
         required: true,
-        maxlength: 5000
+        maxlength: 500
     },
 });
 

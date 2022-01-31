@@ -159,14 +159,49 @@ app.post('/api/registerMovie', function (req, res) {
 
 
 app.get('/api/movies', function (req, res) {
-    Movie.find({}).then((movies)=>{
+    Movie.find({}).then((movies) => {
         res.json(movies)
     })
 });
 
 app.get('/api/info/:id', function (req, res) {
-    Movie.find({_id:(req.params.id)}).then((movies)=>{
+    Movie.find({ _id: (req.params.id) }).then((movies) => {
         res.json(movies)
+    })
+});
+
+
+app.delete('/api/delete/:id', function (req, res) {
+    Movie.findByIdAndDelete(req.params.id, function (err, doc) {
+        if (err) return res.status(400).send(err);
+        if (!doc) return res.status(404).json({ message: "NOt found" });
+        res.status(200).json({
+            delete: true,
+            note: doc
+        });
+    })
+});
+
+app.put('/api/update/:id', function (req, res) {
+    Movie.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        gender: req.body.gender,
+        img: req.body.img,
+        synopsis: req.body.synopsis,
+        format: req.body.format,
+        value: req.body.value,
+        hour: req.body.hour,
+        duration: req.body.duration,
+        trailer: req.body.trailer
+    }, { new: true }, function (err, doc) {
+        if(err) return res.status(400).send(err);
+        
+        if(!doc) return res.status(404).json({message : "No note with this id has been found"});
+
+        res.status(200).json({
+            update : true,
+            note : doc
+        });
     })
 });
 
@@ -176,12 +211,11 @@ app.get('/api/info/:id', function (req, res) {
 
 
 
+/* let peliculas = new mongoose.Schema({
+    titulo: { type: String, required: true }
+});
 
-    /* let peliculas = new mongoose.Schema({
-        titulo: { type: String, required: true }
-    });
-
-    let peli = mongoose.model("movies", peliculas); */
+let peli = mongoose.model("movies", peliculas); */
 /*     peli.find({}, (error, data) => {
         if (data) {
             res.json(data)
@@ -232,9 +266,9 @@ exports = async function (payload, response) {
 }); */
 
 //delete a Note with noteId
-/* app.delete('/api/delete', function (req, res){
+app.delete('/api/delete', function (req, res) {
 
-}); */
+});
 
 
 

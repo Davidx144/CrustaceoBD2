@@ -23,12 +23,12 @@ const movieSchema = mongoose.Schema({
     synopsis: {
         type: String,
         required: true,
-        maxlength: 500
+        maxlength: 5000
     },
     format: {
         type: String,
         required: true,
-        maxlength: 100
+        maxlength: 1000
     },
     value: {
         type: String,

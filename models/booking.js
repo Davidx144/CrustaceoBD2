@@ -15,22 +15,11 @@ const bookingSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
-    id_hour: {
-        type: String,
-        required: true,
-        maxlength: 5000
+    chairs: {
+        type: Array,
+        required: true
     },
-    sillas: {
-        type: String,
-        required: true,
-        maxlength: 500
-    },
-    format: {
-        type: String,
-        required: true,
-        maxlength: 100
-    },
-    value: {
+    movieValue: {
         type: String,
         required: true,
         maxlength: 100
@@ -40,16 +29,7 @@ const bookingSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
-    duration: {
-        type: String,
-        required: true,
-        maxlength: 100
-    },
-    trailer: {
-        type: String,
-        required: true,
-        maxlength: 500
-    },
+   
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);

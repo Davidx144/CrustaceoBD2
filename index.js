@@ -6,11 +6,14 @@ const cookieParser = require('cookie-parser');
 const db = require('./config/config').get(process.env.NODE_ENV);
 const User = require('./models/user');
 const Movie = require('./models/movie');
+const Booking = require('./models/booking');
+
 
 const { auth } = require('./middlewares/auth');
 // Ensallo
 const cors = require("cors");
 const movie = require('./models/movie');
+const booking = require('./models/booking');
 const corsOptions = {
     origin: '*',
     credentials: true,            //access-control-allow-credentials:true
@@ -206,6 +209,43 @@ app.put('/api/update/:id', function (req, res) {
 });
 
 
+//Reservas
+app.post('/api/registerBooking', function (req, res) {
+    // taking a user
+    const newbooking = new Booking(req.body)
+    Booking.findOne({ title: newbooking.title }, function (err, booking) {
+        /* if (booking) return res.status(400).json({ auth: false, message: "booking exits" }); */
+
+        newbooking.save((err, doc) => {
+            if (err) {
+                console.log(err);
+                return res.status(400).json({ success: false });
+            }
+            res.status(200).json({
+                succes: true,
+                booking: doc
+            });
+        });
+    });
+});
+
+app.get('/api/bookingsMovie/:id', function (req, res) {
+    Booking.find({ movie: (req.params.id_movie) }).then((bookings) => {
+        res.json(bookings)
+    })
+});
+
+app.get('/api/bookingsUser/:id', function (req, res) {
+    Booking.find({ _id: (req.params.id) }).then((bookings) => {
+        res.json(bookings)
+    })
+});
+
+app.get('/api/bookings', function (req, res) {
+    Booking.find({}).then((bookings) => {
+        res.json(bookings)
+    })
+});
 
 
 

@@ -29,6 +29,16 @@ const bookingSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
+    title:{
+        type: String,
+        required: true,
+        maxlength: 200
+    },
+    bookingValue:{
+        type: String,
+        required: true,
+        maxlength: 200
+    }
    
 });
 

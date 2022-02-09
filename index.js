@@ -230,14 +230,25 @@ app.post('/api/registerBooking', function (req, res) {
 });
 
 app.get('/api/bookingsMovie/:id', function (req, res) {
-    Booking.find({ movie: (req.params.id_movie) }).then((bookings) => {
+    Booking.find({ id_movie: (req.params.id) }).then((bookings) => {
         res.json(bookings)
     })
 });
 
 app.get('/api/bookingsUser/:id', function (req, res) {
-    Booking.find({ _id: (req.params.id) }).then((bookings) => {
+    Booking.find({ id_user: (req.params.id) }).then((bookings) => {
         res.json(bookings)
+    })
+});
+
+app.delete('/api/deleteBooking/:id', function (req, res) {
+    Movie.findByIdAndDelete(req.params.id, function (err, doc) {
+        if (err) return res.status(400).send(err);
+        if (!doc) return res.status(404).json({ message: "NOt found" });
+        res.status(200).json({
+            delete: true,
+            note: doc
+        });
     })
 });
 

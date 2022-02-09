@@ -35,10 +35,14 @@ const movieSchema = mongoose.Schema({
         required: true,
         maxlength: 100
     },
-    hour: {
+/*     hour: {
         type: String,
         required: true,
         maxlength: 100
+    }, */
+    hours: {
+        type: Array,
+        required: true,
     },
     duration: {
         type: String,

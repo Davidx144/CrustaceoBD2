@@ -208,6 +208,9 @@ app.put('/api/update/:id', function (req, res) {
     })
 });
 
+app.delete('/api/delete', function (req, res) {
+
+});
 
 //Reservas
 app.post('/api/registerBooking', function (req, res) {
@@ -242,7 +245,7 @@ app.get('/api/bookingsUser/:id', function (req, res) {
 });
 
 app.delete('/api/deleteBooking/:id', function (req, res) {
-    Movie.findByIdAndDelete(req.params.id, function (err, doc) {
+    Booking.findByIdAndDelete(req.params.id, function (err, doc) {
         if (err) return res.status(400).send(err);
         if (!doc) return res.status(404).json({ message: "NOt found" });
         res.status(200).json({
@@ -317,9 +320,7 @@ exports = async function (payload, response) {
 }); */
 
 //delete a Note with noteId
-app.delete('/api/delete', function (req, res) {
 
-});
 
 
 

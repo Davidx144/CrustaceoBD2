@@ -244,6 +244,12 @@ app.get('/api/bookingsUser/:id', function (req, res) {
     })
 });
 
+app.get('/api/booking/:id', function (req, res) {
+    Booking.find({ _id: (req.params.id) }).then((bookings) => {
+        res.json(bookings)
+    })
+});
+
 app.delete('/api/deleteBooking/:id', function (req, res) {
     Booking.findByIdAndDelete(req.params.id, function (err, doc) {
         if (err) return res.status(400).send(err);

@@ -213,6 +213,7 @@ app.delete('/api/delete', function (req, res) {
 });
 
 //Reservas
+//registrar reserva
 app.post('/api/registerBooking', function (req, res) {
     // taking a user
     const newbooking = new Booking(req.body)
@@ -232,24 +233,28 @@ app.post('/api/registerBooking', function (req, res) {
     });
 });
 
+//reservas de esa peli
 app.get('/api/bookingsMovie/:id', function (req, res) {
     Booking.find({ id_movie: (req.params.id) }).then((bookings) => {
         res.json(bookings)
     })
 });
 
+//reservas del usuario
 app.get('/api/bookingsUser/:id', function (req, res) {
     Booking.find({ id_user: (req.params.id) }).then((bookings) => {
         res.json(bookings)
     })
 });
 
+//reservas de la peli espesifica
 app.get('/api/booking/:id', function (req, res) {
     Booking.find({ _id: (req.params.id) }).then((bookings) => {
         res.json(bookings)
     })
 });
 
+//eliminar reserva
 app.delete('/api/deleteBooking/:id', function (req, res) {
     Booking.findByIdAndDelete(req.params.id, function (err, doc) {
         if (err) return res.status(400).send(err);
@@ -261,14 +266,30 @@ app.delete('/api/deleteBooking/:id', function (req, res) {
     })
 });
 
+//todas las reservas
 app.get('/api/bookings', function (req, res) {
     Booking.find({}).then((bookings) => {
         res.json(bookings)
     })
 });
 
+//modificar la reserva
+app.put('/api/updateBooking/:id', function (req, res) {
+    Booking.findByIdAndUpdate(req.params.id, {
+        chairs: req.body.chairs,
+        bookingValue: req.body.bookingValue,
 
+    }, { new: true }, function (err, doc) {
+        if(err) return res.status(400).send(err);
+        
+        if(!doc) return res.status(404).json({message : "No note with this id has been found"});
 
+        res.status(200).json({
+            update : true,
+            note : doc
+        });
+    })
+});
 
 
 /* let peliculas = new mongoose.Schema({

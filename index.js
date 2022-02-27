@@ -195,7 +195,8 @@ app.put('/api/update/:id', function (req, res) {
         value: req.body.value,
         hour: req.body.hour,
         duration: req.body.duration,
-        trailer: req.body.trailer
+        trailer: req.body.trailer,
+        cartelera: req.body.cartelera
     }, { new: true }, function (err, doc) {
         if(err) return res.status(400).send(err);
         

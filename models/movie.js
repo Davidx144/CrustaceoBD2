@@ -54,6 +54,11 @@ const movieSchema = mongoose.Schema({
         required: true,
         maxlength: 500
     },
+    cartelera:{
+        type: String,
+        required: true,
+        maxlength: 100
+    }
 });
 
 /* 

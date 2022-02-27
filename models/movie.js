@@ -58,6 +58,11 @@ const movieSchema = mongoose.Schema({
         type: String,
         required: true,
         maxlength: 100
+    },
+    relevant: {
+        type: String,
+        required: true,
+        maxlength: 100
     }
 });
 
